@@ -20,7 +20,7 @@ function setup() {
   createButtons();
   
   var front = false;
-  var constraints = { video: { facingMode: (front? "user" : "environment") } };
+  var constraints = { video: { facingMode: (front? "environment") } };
   navigator.mediaDevices.getUserMedia(constraints)
     .then(function(mediaStream){
       video.srcObject = mediaStream;
