@@ -20,11 +20,15 @@ function setup() {
   createButtons();
   
   var front = false;
-  document.getElementById('flip-button').onclick = function() { front = !front; };
-
-  video = { video: { facingMode: (front? "user" : "environment") } };
-
-
+  var constraints = { video: { facingMode: (front? "user" : "environment") } };
+  navigator.mediaDevices.getUserMedia(constraints)
+    .then(function(mediaStream){
+      video.srcObject = mediaStream;
+      video.onloadedmetadata = function(e) {
+        video.play();
+      };
+    })
+    .catch(function(err) { console.log(err.name + ": " + err.message); });
 }
 
 function createButtons() {
