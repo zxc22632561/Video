@@ -19,6 +19,11 @@ function setup() {
   knn = new ml5.KNNImageClassifier(4, 1, modelLoaded, video.elt);
   createButtons();
   
+  var front = false;
+  document.getElementById('flip-button').onclick = function() { front = !front; };
+
+  video = { video: { facingMode: (front? "user" : "environment") } };
+
 
 }
 
